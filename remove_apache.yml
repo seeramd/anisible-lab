@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+  become: true
+  tasks: 
+
+  - name: update repo index
+    yum:
+        update_cache: yes
+
+  - name: remove httpd
+    yum:
+        name: httpd
+        state: absent
+  
+  - name: remove php modules
+    yum:
+        name:
+            - php
+            - php-opcache
+            - php-gd
+            - php-curl
+            - php-mysqlnd
+        state: absent

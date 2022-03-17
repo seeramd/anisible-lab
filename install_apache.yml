@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+  become: true
+  tasks: 
+
+  - name: update repo index
+    yum:
+        update_cache: yes
+
+  - name: install httpd
+    yum:
+        name: httpd
+        state: latest
+  
+  - name: install php modules
+    yum:
+        name:
+            - php
+            - php-opcache
+            - php-gd
+            - php-curl
+            - php-mysqlnd
+        state: latest
